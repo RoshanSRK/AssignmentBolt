@@ -1,6 +1,6 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="976,4697.6" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="976,4989.6" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="43">
+    <scg:List x:TypeArguments="x:String" Capacity="46">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -44,10 +44,13 @@
       <x:String>UiPath.UIAutomationNext.Contracts</x:String>
       <x:String>UiPath.UIAutomationNext.Models.ExtractData</x:String>
       <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.Database</x:String>
+      <x:String>UiPath.Database.Activities</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="68">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="36">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -81,20 +84,23 @@
       <AssemblyReference>UiPath.Platform</AssemblyReference>
       <AssemblyReference>UiPath.CV</AssemblyReference>
       <AssemblyReference>UiPath.CV.Activities</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Database</AssemblyReference>
+      <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="986.4,4632.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap:VirtualizedContainerService.HintSize="986.4,4924.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dt_CandidatesData" />
       <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="ExtractDataTable" />
+      <Variable x:TypeArguments="ui:DatabaseConnection" Name="db_connection" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
+    <ui:DatabaseConnect DisplayName="Connect" sap:VirtualizedContainerService.HintSize="944.8,60" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="System.Data.SqlClient" ConnectionString="Data Source=LAPTOP-NJHF1LIH\SQLEXPRESS02;Initial Catalog=CandidatesDetails;Integrated Security=True" DatabaseConnection="[db_connection]" />
     <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="944.8,532" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_1" WorkbookPath="CandidatesData.xlsx">
       <ueab:ExcelApplicationCard.Body>
         <ActivityAction x:TypeArguments="ue:IWorkbookQuickHandle">
@@ -112,13 +118,13 @@
         </ActivityAction>
       </ueab:ExcelApplicationCard.Body>
     </ueab:ExcelApplicationCard>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: New Tab" sap:VirtualizedContainerService.HintSize="944.8,3968" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" ScopeGuid="024bac3e-3791-4d50-9d65-d583101b351e" Version="V1">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: New Tab" sap:VirtualizedContainerService.HintSize="944.8,4160" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" ScopeGuid="024bac3e-3791-4d50-9d65-d583101b351e" Version="V1">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="911.2,3751.2" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="911.2,3943.2" sap2010:WorkflowViewState.IdRef="Sequence_6">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -154,13 +160,13 @@
             </ui:Click>
             <Delay Duration="00:00:20" sap:VirtualizedContainerService.HintSize="869.6,22.4" sap2010:WorkflowViewState.IdRef="Delay_7" />
             <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="869.6,85.6" sap2010:WorkflowViewState.IdRef="MessageBox_11" Text="[&quot;Completed login&quot;]" />
-            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_CandidatesData]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="869.6,2497.6" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_CandidatesData]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="869.6,2220" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="836,2375.2" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="836,2097.6" sap2010:WorkflowViewState.IdRef="Sequence_5">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="x:String" Name="profileLink" />
                       <Variable x:TypeArguments="x:String" Name="Position" />
@@ -204,18 +210,6 @@
                         <OutArgument x:TypeArguments="x:String">[profileLink]</OutArgument>
                       </uix:NGetText.Text>
                     </uix:NGetText>
-                    <uix:NMouseScroll Direction="Down" DisplayName="Mouse Scroll" sap:VirtualizedContainerService.HintSize="794.4,238.4" sap2010:WorkflowViewState.IdRef="NMouseScroll_1" InteractionMode="HardwareEvents" MovementUnits="10" Version="V1">
-                      <uix:NMouseScroll.SearchedElement>
-                        <uix:SearchedElement DisplayName="{x:Null}">
-                          <uix:SearchedElement.Target>
-                            <uix:TargetAnchorable BrowserURL="https://www.linkedin.com/in/alisha-toolsy-4817a722a/" DesignTimeRectangle="168, 573, 122, 37" FriendlyName="'ExperienceExperience'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;main&amp;gt;section&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='11' parentid='profile-content' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' aaname='                          ' parentid='profile-content' tag='DIV' check:text='ExperienceExperience' /&gt;" Guid="c18649ad-a437-424b-91f3-098f2d622e0f" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAH4AAAApCAYAAADzqJ3HAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAVUSURBVHhe7VnbK3ZPFP79G/4AF+7cuJFckFyQhISQFOWCJImiSDnlUA5FIiRFOcaFlJxyIXIoFEJKDiHHnM33Pau9tnn3t/l6X96332fmqem116xZe816Ztas2f4TGkpCE68oNPGKQhOvKDTxikITryg08YpCE68oNPGKQhOvKDTxikITryg08YpCE68oNPGKQhOvKDTxikITryg08YpCE68oNPG/cXZ2Jnp6esTGxoYh+flwmfj7+3uRl5cnvLy8bBv6oPMvoLa2lnxOSkoSl5eXhvRnQxP/GyMjI8LX11c0NTWJ5+dnQ/qz8S3E9/f3G1KNfwWaeEXhduKHhoaEt7e3iIiIEAcHB4ZU0N+QIcXOzs6SjM9a/B4eHoqioiLh4+NDLTc312E8A3709vaKqKgoGuvn5ycqKiqoYGNcXFyI+Ph46p+fnyd96BUUFIiHhwfyH33W4+nt7U0sLi6KjIwM8gHzSE9PF2tra9THkP2Gj/AV+ngHjo+7uztD8x3wr6GhQYSEhJh+l5aWkq+Mq6sr0dzcbOoEBASI1tZWW3vOwu3Ew0kEAnpwGgF7eXkR9fX1JKurqzPPVQ5gdna2SElJoQnHxMRQECEPCwsTu7u7pAvANsjjPgQuNjaWnjH+9PSU9GTiS0pKiED8zUTbEQ8/BwYGSBek5Ofni8zMTJNQLCAG+52QkEB+hIeHU4MMDeRjzgwspuDgYOqDPcwRc4VsZ2eHdOA75gAdzAlzg208Y85fJd9txZ28GHBNCgwMNCfGz6iiT05ODK33ACKwKLheX19JfnR0ZAYBOwCkoGEhQVZZWWkShkWExSTrysTD9szMjGkbsCN+ZWWFdDFOzjTITshSqamp5g1A9hv9eCfsI7NAHh0dLY6Pj0kXv7w4q6urTQKhPzc3J/b398Xj4yMtUOh0d3ebG0PeRGNjYyRzFR4hXiapqqpKFBYWOqR4BgcQ/Zi8jOnpaepLS0ujFHh+fk47TN4ljIWFBdLFDr25uXEgvqOjg/yRYSUe/bx45HkAbMvf39+897PfZWVlDjt7b29PhIaGOvg4Pj5OullZWeL6+ppkVkAXYzA/zFMG+2p9l7PwWHGHMw27BPpo5eXlf1ydOIB9fX2G5B3b29siKCiIgo7gc3DYnl1jXZl4LAorrMT/bVFzY1vsN35l8Htl4lm3paWFnu3AC/ezxr66Co8RL6cpNOu5B3BQ7OwtLS3ReWslHjsPqb6xsfGP1tnZKW5vb79EPH7tbKNxveEK8V1dXfRsByYeZzr07d49ODgonp6ejBHOwyPEI3XirIIuKnWc1zgPrSRwUHD2WdMxPqmijytxZBCclXLK/QjOEo93wwfIPiOI4QzxsAddFLAfFWic3eTa4LvhEeK5UEL1ikJtamqKdi9Sv3zt4gAiUNjhTP7m5qZZ0XJRg2yBegEyZBLZDgqliYkJsbq6Ss/OEg+g/oCPeO/y8rLDQkQBhsKN4QzxnKlgu62tzaxl5OIOCwILAzblAhCA/vDwMNUPX4HbijueLCpf3H0h4wUij5VTvkw8dnJkZKTDdc56jcFdPzExkfr4WhQXF0f3XciYZFeIR4BrampIjobrGWzzNU0m2RnisYDwbYPnhA2BzGW9ziGL4VnWQcPfsp6rcCvxW1tbRCyeQb78DxDOAmhMBgcQAceOT05OpufPPlxYP4QgoHjX5OSkuZtcIR7A+NHRUaqusUOhgw9F7e3tZJPhDPEAyF9fXxc5OTk0f7aLmkR+P66RxcXF5kKGLsbgO4B8HXUFLhPvDnwUQI3vhyZeUWjiFYUmXlFo4hXF/4p4DU9BiF9A1fqx1weFuQAAAABJRU5ErkJggg==" InformativeScreenshot="3d01d975c81ee11ff1b2497fdfdcc9df.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Alisha Toolsy | LinkedIn' /&gt;" SearchSteps="FuzzySelector" />
-                          </uix:SearchedElement.Target>
-                          <uix:SearchedElement.Timeout>
-                            <InArgument x:TypeArguments="x:Double" />
-                          </uix:SearchedElement.Timeout>
-                        </uix:SearchedElement>
-                      </uix:NMouseScroll.SearchedElement>
-                    </uix:NMouseScroll>
                     <uix:NGetText DisplayName="Get Text 'Experience'" sap:VirtualizedContainerService.HintSize="794.4,157.6" sap2010:WorkflowViewState.IdRef="NGetText_2" ScopeIdentifier="024bac3e-3791-4d50-9d65-d583101b351e" Version="V1">
                       <uix:NGetText.Target>
                         <uix:TargetAnchorable BrowserURL="https://www.linkedin.com/in/alisha-toolsy-4817a722a/" DesignTimeRectangle="236, 445, 219, 24" ElementType="Text" FriendlyName="'Talent Acquisition'" FullSelectorArgument="&lt;webctrl aaname='Talent Acquisition Partner' parentid='profile-content' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='profile-content' tag='SPAN' type='' /&gt;" Guid="3805ab4f-4022-4aac-8f8d-259bfd84b9dd" ImageBase64="" InformativeScreenshot="1002ac5fe7292ccc07913d1fddadc66e.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Alisha Toolsy | LinkedIn' /&gt;" SearchSteps="Selector, FuzzySelector">
@@ -333,19 +327,52 @@
                 </ActivityAction>
               </ui:ForEachRow.Body>
             </ui:ForEachRow>
-            <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="869.6,524" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_2" WorkbookPath="CandidatesData.xlsx">
+            <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="869.6,994.4" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_2" WorkbookPath="CandidatesData.xlsx">
               <ueab:ExcelApplicationCard.Body>
                 <ActivityAction x:TypeArguments="ue:IWorkbookQuickHandle">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="ue:IWorkbookQuickHandle" Name="Excel" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="475.2,254.4" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="475.2,724.8" sap2010:WorkflowViewState.IdRef="Sequence_12">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                     <ueab:WriteRangeX Destination="[Excel.Sheet(&quot;Sheet1&quot;)]" DisplayName="Write DataTable to Excel" sap:VirtualizedContainerService.HintSize="433.6,160" sap2010:WorkflowViewState.IdRef="WriteRangeX_1" IgnoreEmptySource="False" Source="[dt_CandidatesData]" />
+                    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_CandidatesData]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="433.6,304.8" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
+                      <ui:ForEachRow.Body>
+                        <ActivityAction x:TypeArguments="sd:DataRow">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+                          </ActivityAction.Argument>
+                          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="375.2,182.4" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="Execute Non Query" ExistingDbConnection="[db_connection]" sap:VirtualizedContainerService.HintSize="333.6,89.6" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_1" Sql="INSERT INTO CandidateData VALUES(@candidateNum, @candidateName, @companyName, @position);">
+                              <ui:ExecuteNonQuery.Parameters>
+                                <InArgument x:TypeArguments="x:String" x:Key="candidateNum">
+                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="CurrentRow(&quot;Candidate Number&quot;).ToString" />
+                                </InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="candidateName">
+                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="CurrentRow(&quot;Candidate Name&quot;).ToString" />
+                                </InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="companyName">
+                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="CurrentRow(&quot;Current Company&quot;).ToString" />
+                                </InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="position">
+                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="CurrentRow(&quot;Current Position&quot;).ToString" />
+                                </InArgument>
+                              </ui:ExecuteNonQuery.Parameters>
+                            </ui:ExecuteNonQuery>
+                          </Sequence>
+                        </ActivityAction>
+                      </ui:ForEachRow.Body>
+                    </ui:ForEachRow>
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="433.6,85.6" sap2010:WorkflowViewState.IdRef="MessageBox_12" Text="[&quot;Gayyy (✿◡‿◡) &quot;]" />
                   </Sequence>
                 </ActivityAction>
               </ueab:ExcelApplicationCard.Body>
