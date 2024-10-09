@@ -415,7 +415,7 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <umab:SendMailX Bcc="{x:Null}" Cc="{x:Null}" HtmlBodyFromText="{x:Null}" ReplyTo="{x:Null}" Account="[Outlook]" Body="Hello find attached bob check report" BodyType="Text" DisplayName="Send Email" sap:VirtualizedContainerService.HintSize="433.6,408.8" sap2010:WorkflowViewState.IdRef="SendMailX_1" Importance="Normal" MaxBodyDocumentSizeMB="2" Sensitivity="Normal" Subject="Bobcheck report" To="malikamagho@gmail.com" UseDocumentAsBody="False">
+                    <umab:SendMailX Bcc="{x:Null}" Cc="{x:Null}" HtmlBodyFromText="{x:Null}" ReplyTo="{x:Null}" Account="[Outlook]" Body="Hello find attached bob check report" BodyType="Text" DisplayName="Send Email" sap:VirtualizedContainerService.HintSize="433.6,408.8" sap2010:WorkflowViewState.IdRef="SendMailX_1" Importance="Normal" IsDraft="False" MaxBodyDocumentSizeMB="2" Sensitivity="Normal" Subject="Bobcheck report" To="malikamagho@gmail.com" UseDocumentAsBody="False">
                       <umab:SendMailX.Files>
                         <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
                           <InArgument x:TypeArguments="x:String">CandidatesData.xlsx</InArgument>
