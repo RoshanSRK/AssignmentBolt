@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="976,6003.2" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:um="clr-namespace:UiPath.Mail;assembly=UiPath.Mail.Activities" xmlns:umab="clr-namespace:UiPath.Mail.Activities.Business;assembly=UiPath.Mail.Activities" xmlns:umabh="clr-namespace:UiPath.Mail.Activities.Business.HtmlEditor;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="976,6860.8" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:um="clr-namespace:UiPath.Mail;assembly=UiPath.Mail.Activities" xmlns:umab="clr-namespace:UiPath.Mail.Activities.Business;assembly=UiPath.Mail.Activities" xmlns:umabh="clr-namespace:UiPath.Mail.Activities.Business.HtmlEditor;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="92">
       <x:String>System.Activities</x:String>
@@ -103,7 +103,7 @@
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="986.4,5938.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap:VirtualizedContainerService.HintSize="986.4,6796" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dt_CandidatesData" />
       <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="ExtractDataTable" />
@@ -114,7 +114,27 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:DatabaseConnect DisplayName="Connect" sap:VirtualizedContainerService.HintSize="944.8,60" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="System.Data.SqlClient" ConnectionString="Data Source=LAPTOP-NJHF1LIH\SQLEXPRESS02;Initial Catalog=CandidatesDetails;Integrated Security=True" DatabaseConnection="[db_connection]" />
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="944.8,291.2" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch.Try>
+        <ui:DatabaseConnect DisplayName="Connect" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="System.Data.SqlClient" ConnectionString="Data Source=LAPTOP-NJHF1LIH\SQLEXPRESS02;Initial Catalog=CandidatesDetails;Integrated Security=True" DatabaseConnection="[db_connection]" />
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="403.2,22.4" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="333.6,85.6" sap2010:WorkflowViewState.IdRef="MessageBox_14" Text="[exception.Message.ToString]" />
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
     <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="944.8,532" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_1" WorkbookPath="CandidatesData.xlsx">
       <ueab:ExcelApplicationCard.Body>
         <ActivityAction x:TypeArguments="ue:IWorkbookQuickHandle">
@@ -132,13 +152,13 @@
         </ActivityAction>
       </ueab:ExcelApplicationCard.Body>
     </ueab:ExcelApplicationCard>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: New Tab" sap:VirtualizedContainerService.HintSize="944.8,5173.6" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" ScopeGuid="024bac3e-3791-4d50-9d65-d583101b351e" Version="V1">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: New Tab" sap:VirtualizedContainerService.HintSize="944.8,5800" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" ScopeGuid="024bac3e-3791-4d50-9d65-d583101b351e" Version="V1">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="911.2,4956.8" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="911.2,5583.2" sap2010:WorkflowViewState.IdRef="Sequence_6">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -172,8 +192,7 @@
                 </ui:Target>
               </ui:Click.Target>
             </ui:Click>
-            <Delay Duration="00:00:20" sap:VirtualizedContainerService.HintSize="869.6,22.4" sap2010:WorkflowViewState.IdRef="Delay_7" />
-            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="869.6,85.6" sap2010:WorkflowViewState.IdRef="MessageBox_11" Text="[&quot;Completed login&quot;]" />
+            <Delay Duration="00:00:15" sap:VirtualizedContainerService.HintSize="869.6,22.4" sap2010:WorkflowViewState.IdRef="Delay_7" />
             <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_CandidatesData]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="869.6,2220" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
@@ -358,34 +377,54 @@
                 </ActivityAction>
               </ueab:ExcelApplicationCard.Body>
             </ueab:ExcelApplicationCard>
-            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_CandidatesData]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="869.6,589.6" sap2010:WorkflowViewState.IdRef="ForEachRow_4">
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_CandidatesData]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="869.6,821.6" sap2010:WorkflowViewState.IdRef="ForEachRow_4">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="524.8,467.2" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="555.2,699.2" sap2010:WorkflowViewState.IdRef="Sequence_15">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <If Condition="[CurrentRow(&quot;Status&quot;).Equals(&quot;To be checked&quot;)]" sap:VirtualizedContainerService.HintSize="483.2,373.6" sap2010:WorkflowViewState.IdRef="If_2">
+                    <If Condition="[CurrentRow(&quot;Status&quot;).Equals(&quot;To be checked&quot;)]" sap:VirtualizedContainerService.HintSize="513.6,604.8" sap2010:WorkflowViewState.IdRef="If_2">
                       <If.Then>
-                        <Sequence sap:VirtualizedContainerService.HintSize="375.2,183.2" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                        <Sequence sap:VirtualizedContainerService.HintSize="478.4,414.4" sap2010:WorkflowViewState.IdRef="Sequence_16">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="Execute Non Query" ExistingDbConnection="[db_connection]" sap:VirtualizedContainerService.HintSize="333.6,89.6" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_2" Sql="INSERT INTO CandidateData VALUES(@candidateNum, @candidateName, @companyName, @position);">
-                            <ui:ExecuteNonQuery.Parameters>
-                              <InArgument x:TypeArguments="x:String" x:Key="candidateNum">[CurrentRow("Candidate Number").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="candidateName">[CurrentRow("Candidate Name").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="companyName">[CurrentRow("Current Company").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="position">[CurrentRow("Current Position").ToString]</InArgument>
-                            </ui:ExecuteNonQuery.Parameters>
-                          </ui:ExecuteNonQuery>
+                          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="436.8,320.8" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                            <TryCatch.Try>
+                              <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="Execute Non Query" ExistingDbConnection="[db_connection]" sap:VirtualizedContainerService.HintSize="333.6,89.6" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_2" Sql="INSERT INTO CandidateData VALUES(@candidateNum, @candidateName, @companyName, @position);">
+                                <ui:ExecuteNonQuery.Parameters>
+                                  <InArgument x:TypeArguments="x:String" x:Key="candidateNum">[CurrentRow("Candidate Number").ToString]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="candidateName">[CurrentRow("Candidate Name").ToString]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="companyName">[CurrentRow("Current Company").ToString]</InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="position">[CurrentRow("Current Position").ToString]</InArgument>
+                                </ui:ExecuteNonQuery.Parameters>
+                              </ui:ExecuteNonQuery>
+                            </TryCatch.Try>
+                            <TryCatch.Catches>
+                              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="403.2,22.4" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ActivityAction x:TypeArguments="s:Exception">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                  </ActivityAction.Argument>
+                                  <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="333.6,85.6" sap2010:WorkflowViewState.IdRef="MessageBox_15" Text="[exception.Message.ToString]" />
+                                </ActivityAction>
+                              </Catch>
+                            </TryCatch.Catches>
+                          </TryCatch>
                         </Sequence>
                       </If.Then>
                       <If.Else>
@@ -402,14 +441,14 @@
                 </ActivityAction>
               </ui:ForEachRow.Body>
             </ui:ForEachRow>
-            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="869.6,85.6" sap2010:WorkflowViewState.IdRef="MessageBox_13" Text="[&quot;Gayyy (✿◡‿◡) &quot;]" />
-            <umab:OutlookApplicationCard Account="ashfaaqeathally10@outlook.com" DisplayName="Use Desktop Outlook App" sap:VirtualizedContainerService.HintSize="869.6,688" sap2010:WorkflowViewState.IdRef="OutlookApplicationCard_1">
+            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="869.6,85.6" sap2010:WorkflowViewState.IdRef="MessageBox_13" Text="[&quot;Successfully inserted in database &quot;]" />
+            <umab:OutlookApplicationCard Account="ashfaaqeathally10@outlook.com" DisplayName="Use Desktop Outlook App" sap:VirtualizedContainerService.HintSize="869.6,687.2" sap2010:WorkflowViewState.IdRef="OutlookApplicationCard_1">
               <umab:OutlookApplicationCard.Body>
                 <ActivityAction x:TypeArguments="um:IMailQuickHandle">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="um:IMailQuickHandle" Name="Outlook" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="475.2,503.2" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="475.2,502.4" sap2010:WorkflowViewState.IdRef="Sequence_14">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -436,6 +475,17 @@
                 </ActivityAction>
               </umab:OutlookApplicationCard.Body>
             </umab:OutlookApplicationCard>
+            <uix:NClick ClickType="Single" DisplayName="Click 'Me'" sap:VirtualizedContainerService.HintSize="869.6,157.6" sap2010:WorkflowViewState.IdRef="NClick_11" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="024bac3e-3791-4d50-9d65-d583101b351e" Version="V1">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.linkedin.com/in/amanda-dieudonn%C3%A9-b71b03176/" DesignTimeRectangle="1008, 125, 33, 16" FriendlyName="'Me'" FullSelectorArgument="&lt;webctrl parentid='ember16' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='ember16' tag='SPAN' type='' aaname='           Me                     ' check:text='Me' /&gt;" Guid="d95fdfee-800e-46ef-991d-1364efbf0e69" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACUAAAAUCAYAAAAKuPQLAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAEiSURBVEhL7ZJBDoIwEAD9Rv9jfIIfIOEFhgcYvRHSs3c91hf4g/IHEhMjevHsZd1FIFtssShGDkyyCWzb7GR3J9CR4+UOq90VpovMK9Z4l950obNUBRXaHm4Qbc4wXx5hFmVF0Dfl6KyrTMXHUr9klPJl+FL5PgAhJOjy3yCV7rOeeZEKwgBkWiZqclCYD8J/SSUSiyvUYJwU5hWK+UvFcYydFa1Bd2y8Su110RV1KpOITgR2T4Pk4yPRuoBdtk3MJURYpLBHtD9JVQZlis4xKRLi3TTum9jE2oQIuxQTsOWeS28WEs2RM7jYOyHCIcVHWY2mIeXojAuS8REinFL1zvAx8vEJc+/6xC2F6IQXZlJEY4T83bcYUkNhlPJllPID4AG4A7xQEto0PQAAAABJRU5ErkJggg==" InformativeScreenshot="c5bfe9eb0cc97e02b813bcce05170af2.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='(6) Amanda Dieudonné | LinkedIn' /&gt;" SearchSteps="FuzzySelector, Image" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NClick ClickType="Single" DisplayName="Click 'Sign Out'" sap:VirtualizedContainerService.HintSize="869.6,157.6" sap2010:WorkflowViewState.IdRef="NClick_12" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="024bac3e-3791-4d50-9d65-d583101b351e" Version="V1">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.linkedin.com/in/amanda-dieudonn%C3%A9-b71b03176/" DesignTimeRectangle="803, 522, 260, 28" ElementType="Text" FriendlyName="'Sign Out'" FullSelectorArgument="&lt;webctrl aaname='         Sign Out       ' parentid='ember18' tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='         Sign Out       ' parentid='ember18' tag='A' type='' check:text='Sign Out' /&gt;" Guid="41190ab4-008c-473d-b8b6-cb2fa3e34bd8" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAQgAAAAgCAYAAADufuYQAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAJJSURBVHhe7dm/i9pwGMfx/LVOnbp2k44ddD1XoXuRDjfa4VRKETk4CnJUUXAWJz15ykfynE+DX/wR9Tz6fkEwyZN8k+X5JF+TGQAkEBAAkggIAEkEBIAkAgJAEgEBIImAAJBEQABIIiAAJBEQAJIICABJpQJisVhYvV63SqWyWbSufdJqtTbLJXU6nddrF68PoLyTA2I2m1mtVtv8uvF4/M/2JSl8ioEwHA43QaHfQylkLh1kwHt1ckCoCZvNpi2Xy3zP9ejaqbeFY++LgADSzvoGERUbz5/uWtTA7Xb7ta5GbzQa1u/3rVqt7p0u6DyNv4uPpfuK6y4GiMbxe9KiGoCtUv9BeNPvemLHgNBxseHVsAqCGBCq+zhatO71yGupZo71fQEhvEEAaaUCwqnJFBTxqR4bT7+xJrF+SCM7AgK4nrMEhPhbgDeuN16qoU8NCNkVOC6ORUAA5ZwtICQ2bjEgig2tmjfmsQFxaI2AAMo5OSDUaFqcmnHXG4Sv7/sP4piAEJ1brOscjevjqKZjPJz8HgkI4DAnB4Q3eeorQLHxtO7HqUF3fcU4JiBE14jXjyHk4n2qri8lcVwPDdXj/QM48xTjGAoHf7IDuE1vEhDFqQCA23SVgFAgxKkA4QC8D282xQBw+wgIAEnZer3OVwFg62W1tGw+n+ebALD1/PvRsul0mm8CwNaP+++WPT09GdMMANHLamU/v321rNfr2Wg0yncDgNlj+94e7j5bNhgMrNvt2mQyyUsA/md/fvXs7tMHe/jy0f4Cu5asIC4oYggAAAAASUVORK5CYII=" InformativeScreenshot="16632ebc46ca2129898fc66a43034ce0.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='(6) Amanda Dieudonné | LinkedIn' /&gt;" SearchSteps="FuzzySelector, Image" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="869.6,85.6" sap2010:WorkflowViewState.IdRef="MessageBox_16" Text="[&quot;Successfully signed out &quot;]" />
           </Sequence>
         </ActivityAction>
       </uix:NApplicationCard.Body>
